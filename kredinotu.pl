@@ -79,6 +79,7 @@ verileri_analiz_et(Yas,Meslek,Maas,Menkul,Kira,Arac,Kefil,IstenenKredi):-
                                         write("\nKefil : \t"),write(Kefil),
                                         write("\nIstenen Kredi : \t"),write(IstenenKredi),
                                         kredi_hesap(0,Yas,Maas,Menkul,Kira,Arac,Kefil,Kredi),
+                                        write("\n\nBilgiler hesaplanıyor\n"),
                                         kontrol(Kredi,IstenenKredi).
                                
 kontrol(Kredi,IstenenKredi):- IstenenKredi < Kredi , write("\n\nKredi isteginiz onaylandi!\nVerilebilecek maximum kredi limitiniz : \t"), write(Kredi), !. 
@@ -95,15 +96,15 @@ kefil_hesap(Kredi_ar,Kefil,Kredi_ke),
 Kredi is Kredi_ke.
 
 yas_hesap(Kredi,Yas,Yeni_kredi):-Yas<25 ,topla(Kredi, 500, Yeni_kredi), !.
-yas_hesap(Kredi,Yas,Yeni_kredi):-Yas<30 ,topla(Kredi, 1000,Yeni_kredi), !.
-yas_hesap(Kredi,Yas,Yeni_kredi):-Yas<40 ,topla(Kredi, 5000,Yeni_kredi), !.
-yas_hesap(Kredi,Yas,Yeni_kredi):-Yas<60 ,topla(Kredi, 7000,Yeni_kredi), !.
+yas_hesap(Kredi,Yas,Yeni_kredi):-Yas<30 ,topla(Kredi, 5000,Yeni_kredi), !.
+yas_hesap(Kredi,Yas,Yeni_kredi):-Yas<40 ,topla(Kredi, 7500,Yeni_kredi), !.
+yas_hesap(Kredi,Yas,Yeni_kredi):-Yas<60 ,topla(Kredi, 10000,Yeni_kredi), !.
 
-maas_hesap(Kredi,Maas,Yeni_kredi):-Maas<2000  , topla(Kredi,2000   , Yeni_kredi), !.
-maas_hesap(Kredi,Maas,Yeni_kredi):-Maas<3000  , topla(Kredi,15000  , Yeni_kredi), !.
-maas_hesap(Kredi,Maas,Yeni_kredi):-Maas<4000  , topla(Kredi,20000  , Yeni_kredi), !.
-maas_hesap(Kredi,Maas,Yeni_kredi):-Maas<6000  , topla(Kredi,30000  , Yeni_kredi), !.
-maas_hesap(Kredi,Maas,Yeni_kredi):-Maas<10000 , topla(Kredi,100000  , Yeni_kredi), !.
+maas_hesap(Kredi,Maas,Yeni_kredi):-Maas<2000  , topla(Kredi,5000   , Yeni_kredi), !.
+maas_hesap(Kredi,Maas,Yeni_kredi):-Maas<3000  , topla(Kredi,20000  , Yeni_kredi), !.
+maas_hesap(Kredi,Maas,Yeni_kredi):-Maas<4000  , topla(Kredi,50000  , Yeni_kredi), !.
+maas_hesap(Kredi,Maas,Yeni_kredi):-Maas<6000  , topla(Kredi,120000  , Yeni_kredi), !.
+maas_hesap(Kredi,Maas,Yeni_kredi):-Maas<10000 , topla(Kredi,200000  , Yeni_kredi), !.
 maas_hesap(Kredi,Maas,Yeni_kredi):-			        topla(Kredi,200000 , Yeni_kredi), !.
 
 menkul_hesap(Kredi,Menkul,Yeni_kredi):-Menkul < 50000    ,topla(Kredi , 0       , Yeni_kredi), !.
@@ -121,16 +122,16 @@ kira_hesap(Kredi,Menkul,Yeni_kredi):- Kira < 10000  ,topla(Kredi , 50000   , Yen
 kira_hesap(Kredi,Menkul,Yeni_kredi):- 				       topla(Kredi , 100000  , Yeni_kredi), !.
 
 arac_hesap(Kredi,Arac,Yeni_kredi):-Arac <  20000   , topla(Kredi , 0      , Yeni_kredi) , !.
-arac_hesap(Kredi,Arac,Yeni_kredi):-Arac <  100000  , topla(Kredi , 20000  , Yeni_kredi) , !.
-arac_hesap(Kredi,Arac,Yeni_kredi):-Arac <  250000  , topla(Kredi , 50000  , Yeni_kredi) , !.
-arac_hesap(Kredi,Arac,Yeni_kredi):-Arac <  500000  , topla(Kredi , 100000 , Yeni_kredi) , !.
-arac_hesap(Kredi,Arac,Yeni_kredi):-Arac <  1000000 , topla(Kredi , 200000 , Yeni_kredi) , !.
+arac_hesap(Kredi,Arac,Yeni_kredi):-Arac <  100000  , topla(Kredi , 50000  , Yeni_kredi) , !.
+arac_hesap(Kredi,Arac,Yeni_kredi):-Arac <  250000  , topla(Kredi , 100000  , Yeni_kredi) , !.
+arac_hesap(Kredi,Arac,Yeni_kredi):-Arac <  500000  , topla(Kredi , 250000 , Yeni_kredi) , !.
+arac_hesap(Kredi,Arac,Yeni_kredi):-Arac <  1000000 , topla(Kredi , 400000 , Yeni_kredi) , !.
 arac_hesap(Kredi,Arac,Yeni_kredi):-					         topla(Kredi , 500000 , Yeni_kredi) , !.
 
 kefil_hesap(Kredi,Kefil,Yeni_kredi):-Kefil <  2500  , topla(Kredi , 0     , Yeni_kredi) , !.
-kefil_hesap(Kredi,Kefil,Yeni_kredi):-Kefil <  3500  , topla(Kredi , 10000 , Yeni_kredi) , !.
-kefil_hesap(Kredi,Kefil,Yeni_kredi):-Kefil <  5000  , topla(Kredi , 15000 , Yeni_kredi) , !.
-kefil_hesap(Kredi,Kefil,Yeni_kredi):-Kefil <  10000 , topla(Kredi , 30000 , Yeni_kredi) , !.
+kefil_hesap(Kredi,Kefil,Yeni_kredi):-Kefil <  3500  , topla(Kredi , 20000 , Yeni_kredi) , !.
+kefil_hesap(Kredi,Kefil,Yeni_kredi):-Kefil <  5000  , topla(Kredi , 50000 , Yeni_kredi) , !.
+kefil_hesap(Kredi,Kefil,Yeni_kredi):-Kefil <  10000 , topla(Kredi , 120000 , Yeni_kredi) , !.
 kefil_hesap(Kredi,Kefil,Yeni_kredi):-				          topla(Kredi , 50000 , Yeni_kredi) , !.
 
 topla(X,Y,Z):-Z is X+Y.
@@ -144,5 +145,4 @@ write("\nOturdugunuz konut turu (Ev => 1 , Kira => 2) : \t"),read(Menkul),
 write("\nUzerinizde kayitli bulunan arac var mi? (Evet => 1 , Hayir => 2) : \t"),read(Arac),
 write("\nKefil olacak kisi var mi? (Evet => 1 , Hayir => 2) : \t"),read(Kefil),
 write("\nIstediginiz kredi tutarini giriniz : \t"),read(IstenenKredi),
-write("\n\nBilgiler hesaplanıyor\n"),
 eksikBilgileriDoldur(Yas,Meslek,Maas,Menkul,Arac,Kefil,IstenenKredi).
